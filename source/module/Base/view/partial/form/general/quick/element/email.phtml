@@ -1,0 +1,12 @@
+<?php
+/** @var  $element Zend\Form\Element\Email*/
+$element = $this->element;
+?>
+
+<div class="form-group <?php if($this->formElementErrors($element)) echo " has-error" ?>">
+    <label for="<?php echo $element->getAttribute('id');?>"><?php echo $element->getLabel();?></label>
+    <?php echo $this->formElement($element); ?>
+    <?php echo $this->partial('partial/form/general/quick/message-erros', array(
+        'element' => $element
+    ))?>
+</div>

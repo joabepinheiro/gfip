@@ -1,0 +1,19 @@
+<?php
+/** @var  Base\Form\FormAbstract $form*/
+/** @var  Zend\Form\Element $element */
+$form           = $this->form;
+?>
+<!-- form start -->
+<?php $form->prepare(); ?>
+<?php echo $this->form()->openTag($form); ?>
+    <div class="box-body">
+        <?php
+        foreach($form->getElements() as $element):
+            $type = $element->getAttribute('type');
+            echo $this->partial('partial/form/general/quick/element/'.$type, array(
+                'element' => $element,
+            ));
+         endforeach;
+        ?>
+    </div><!-- /.box-body -->
+</form>

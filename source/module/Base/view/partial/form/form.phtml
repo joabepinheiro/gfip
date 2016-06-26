@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Esse partial éo hub para os outros partial de forms, redirecionando para form que definido no parametro,
+ * caso oparametro não seja informado o partial utilizado para rederização será o 'general/quick'
+ */
+
+$form           = $this->form;
+$type_form        = (is_null($this->type_form)) ? 'general/quick' : $this->type_form;
+
+echo $this->partial('partial/form/'.$type_form, array(
+    'form' => $form,
+));
+
+
+

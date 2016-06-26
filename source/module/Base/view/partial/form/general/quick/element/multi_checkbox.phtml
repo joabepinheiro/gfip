@@ -1,0 +1,14 @@
+<?php
+/** @var  $element Zend\Form\Element\Email*/
+$element = $this->element;
+
+?>
+
+
+<div class="form-group <?php if($this->formElementErrors($element)) echo " has-error" ?>">
+    <h3 class="display-block"><?php echo $element->getOptions()['label'];?> </h3>
+    <?php echo $this->formMultiCheckbox($element); ?>
+    <?php echo $this->partial('partial/form/general/quick/message-erros', array(
+        'element' => $element
+    ))?>
+</div>

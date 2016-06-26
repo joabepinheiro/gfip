@@ -1,0 +1,44 @@
+
+
+.button-crud{
+    margin: 0 5px;
+}
+
+#selecionar-cliente{
+    background: #374850;
+    color: #999;
+    border-radius: 2px;
+    border: 1px solid #374850;
+}
+
+.voltar{
+    float: right;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    border-radius: 2px;
+    list-style: none;
+}
+
+.voltar a{
+    color: #101010;
+}
+
+.content-header>h1{
+    margin-bottom: 30px;
+}
+
+.title-cliente li{
+    color: #fff;
+    padding: 15px 0;
+}
+
+
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th{
+    background-color: #faffa1;
+}

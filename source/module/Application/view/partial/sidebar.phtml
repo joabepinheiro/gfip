@@ -1,0 +1,18 @@
+<?php
+/** @var $this \Zend\View\Renderer\PhpRenderer */
+/** @var  $usuario \Application\Entity\Usuario
+
+$container  = new \Zend\Session\Container('logado');
+$usuario    = $container->offsetGet('usuario');
+
+if($usuario['tipo'] == 'consultor'){
+    echo $this->partial('partial/consutor/sidebar');
+}elseif($usuario['tipo'] == 'administrador'){
+    echo $this->partial('partial/administrador/sidebar');
+}elseif($usuario['tipo'] == 'cliente'){
+    echo $this->partial('partial/cliente/sidebar');
+}
+
+
+ */
+
