@@ -9,6 +9,7 @@ use Zend\Hydrator\ClassMethods;
  *
  * @ORM\Table(name="categoria")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Entity\CategoriaRepository")
  */
 class Categoria
 {
@@ -41,6 +42,16 @@ class Categoria
      * @ORM\Column(name="ativo", type="boolean", nullable=false)
      */
     private $ativo = '1';
+
+    /**
+     * @var \Application\Entity\Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     * })
+     */
+    private $cliente;
 
     public function __construct(array $options = array()){
         (new ClassMethods())->hydrate($options, $this);
@@ -114,6 +125,26 @@ class Categoria
         $this->ativo = $ativo;
     }
 
+    /**
+     * @return Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
 
+    /**
+     * @param Cliente $cliente
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    }
+
+    
+
+    public function __toString(){
+        return $this->getNome();
+    }
 }
 

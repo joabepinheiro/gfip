@@ -14,5 +14,9 @@ use Zend\View\Model\ViewModel;
 
 class AdministradorController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'administrador';
+        parent::__construct();
+    }
 }

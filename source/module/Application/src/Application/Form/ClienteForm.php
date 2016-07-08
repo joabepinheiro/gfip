@@ -1,12 +1,12 @@
 <?php
 namespace Application\Form;
 
-class CartaoCreditoForm extends AbstractForm{
+class ClienteForm extends UsuarioForm{
 
     public function __construct($_name = 'Salvar') {
 
         parent::__construct($_name);
 
-        $this->setInputFilter((new Filter\CartaoCreditoFilter())->getInputFilter());
+        $this->setInputFilter((new Filter\ClienteFilter())->getInputFilter());
     }
 }

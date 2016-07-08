@@ -24,7 +24,7 @@ class ReceitaFilter implements InputFilterAwareInterface{
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput([
-                'name' => '',
+                'name' => 'valor',
                 'required' => true,
                 'filters' => array(
                     array('name' => 'StripTags'),

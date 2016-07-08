@@ -72,6 +72,9 @@ class Administrador
     }
 
 
+    public function __toString(){
+        return $this->getUsuario()->getNome();
+    }
 
 }
 

@@ -9,6 +9,7 @@ use Zend\Hydrator\ClassMethods;
  *
  * @ORM\Table(name="receita", indexes={@ORM\Index(name="fk_table1_categoria1_idx", columns={"categoria_id"}), @ORM\Index(name="fk_Receitas_conta1_idx", columns={"conta_id"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Entity\ReceitaRepository")
  */
 class Receita
 {
@@ -55,6 +56,17 @@ class Receita
      * @ORM\Column(name="efetuada", type="boolean", nullable=false)
      */
     private $efetuada = '1';
+
+    /**
+     * @var \Application\Entity\Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     * })
+     */
+    private $cliente;
+
 
     /**
      * @var \Application\Entity\Conta
@@ -121,7 +133,7 @@ class Receita
      */
     public function getData()
     {
-        return $this->data;
+        return     $this->data->format('d/m/Y');
     }
 
     /**
@@ -129,7 +141,9 @@ class Receita
      */
     public function setData($data)
     {
-        $this->data = $data;
+        $datetime =  new \DateTime($data);
+        $datetime->format('dd/mm/yyyy');
+        $this->data = $datetime;
     }
 
     /**
@@ -181,6 +195,23 @@ class Receita
     }
 
     /**
+     * @return Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param Cliente $cliente
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    }
+
+
+    /**
      * @return Conta
      */
     public function getConta()
@@ -212,6 +243,9 @@ class Receita
         $this->categoria = $categoria;
     }
 
+    public function __toString(){
+        return 'Receita ' . $this->getId();
+    }
 
 }
 

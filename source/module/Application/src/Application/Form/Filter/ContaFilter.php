@@ -24,7 +24,7 @@ class ContaFilter implements InputFilterAwareInterface{
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput([
-                'name' => '',
+                'name' => 'nome',
                 'required' => true,
                 'filters' => array(
                     array('name' => 'StripTags'),

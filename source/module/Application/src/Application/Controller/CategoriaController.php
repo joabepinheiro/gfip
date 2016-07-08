@@ -14,5 +14,9 @@ use Zend\View\Model\ViewModel;
 
 class CategoriaController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'categoria';
+        parent::__construct();
+    }
 }

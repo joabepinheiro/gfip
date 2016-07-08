@@ -14,5 +14,10 @@ use Zend\View\Model\ViewModel;
 
 class ReceitaController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'receita';
+        $this->formService  = true;
+        parent::__construct();
+    }
 }

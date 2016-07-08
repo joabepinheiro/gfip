@@ -3,6 +3,7 @@ namespace Base\Service;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Application;
+use Zend\ServiceManager\ServiceManager;
 use Zend\Session\Container;
 use Zend\Stdlib\Hydrator;
 
@@ -25,11 +26,19 @@ use Zend\Stdlib\Hydrator;
          return null;
      }
 
+     public function getIdUsuarioLogado(){
+         return $this->getUsuarioLogado()['id'];
+     }
+
      public function isLogado(){
          if($this->session->offsetExists('usuario')){
              return true;
          }
          return false;
+     }
+
+     public function getUsuarioLogado(){
+         return $this->session->offsetGet('usuario');
      }
 
  }

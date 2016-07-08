@@ -56,21 +56,32 @@ class Consultor
     }
 
     /**
-     * @return Usuario
+     * @return \Application\Entity\Usuario
      */
     public function getUsuario()
     {
         return $this->usuario;
     }
 
+    public function getNome(){
+      return $this->getUsuario()->getNome();
+    }
+
+    public function getEmail(){
+        return $this->getUsuario()->getEmail();
+    }
+
     /**
-     * @param Usuario $usuario
+     * @param \Application\Entity\Usuario $usuario
      */
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
     }
 
+    public function __toString(){
+        return $this->getUsuario()->getNome();
+    }
 
 }
 

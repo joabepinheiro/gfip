@@ -12,7 +12,11 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class CartaoCreditoController extends ActionController
+class CartaoController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'cartao';
+        parent::__construct();
+    }
 }

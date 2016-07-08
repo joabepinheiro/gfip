@@ -71,6 +71,8 @@ class Cliente
         $this->usuario = $usuario;
     }
 
-
+    public function __toString(){
+        return $this->getUsuario()->getNome();
+    }
 }
 

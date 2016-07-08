@@ -9,6 +9,7 @@ use Zend\Hydrator\ClassMethods;
  *
  * @ORM\Table(name="conta", indexes={@ORM\Index(name="fk_conta_cliente1_idx", columns={"cliente_id"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Entity\ContaRepository")
  */
 class Conta
 {
@@ -161,6 +162,10 @@ class Conta
     public function setCliente($cliente)
     {
         $this->cliente = $cliente;
+    }
+
+    public function __toString(){
+        return $this->getNome();
     }
 
 

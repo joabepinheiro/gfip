@@ -9,7 +9,22 @@
 
 namespace Application;
 
+use Application\Form\DespesaForm;
+use Application\Form\ReceitaForm;
+use Application\Form\TransferenciaForm;
+use Application\Model\CartaoModel;
+use Application\Model\CategoriaModel;
+use Application\Model\ChamadoModel;
+use Application\Model\ClienteModel;
 use Application\Model\ConsultorModel;
+use Application\Model\ContaModel;
+use Application\Model\DespesaModel;
+use Application\Model\InvestimentoModel;
+use Application\Model\ReceitaModel;
+use Application\Model\ReceitoModel;
+use Application\Model\ReciboModel;
+use Application\Model\TransferenciaModel;
+use Application\Model\UsuarioModel;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
@@ -17,6 +32,7 @@ use Zend\Validator\AbstractValidator;
 use Zend\Mvc\I18n\Translator;
 
 class Module
+
 {
     public function onBootstrap(MvcEvent $e)
     {
@@ -62,6 +78,7 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -78,6 +95,48 @@ class Module
             'factories' => array(
                 'Application\Model\ConsultorModel' => function($sm){
                     return new ConsultorModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\CartaoModel' => function($sm){
+                    return new CartaoModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\CategoriaModel' => function($sm){
+                    return new CategoriaModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\ChamadoModel' => function($sm){
+                    return new ChamadoModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\ClienteModel' => function($sm){
+                    return new ClienteModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\ContaModel' => function($sm){
+                    return new ContaModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\DespesaModel' => function($sm){
+                    return new DespesaModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\InvestimentoModel' => function($sm){
+                    return new InvestimentoModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\ReceitaModel' => function($sm){
+                    return new ReceitaModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\ReciboModel' => function($sm){
+                    return new ReciboModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\TransferenciaModel' => function($sm){
+                    return new TransferenciaModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Model\UsuarioModel' => function($sm){
+                    return new UsuarioModel($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Form\ReceitaForm' => function($sm){
+                    return new ReceitaForm(null, $sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Form\DespesaForm' => function($sm){
+                    return new DespesaForm(null, $sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'Application\Form\TransferenciaForm' => function($sm){
+                    return new TransferenciaForm(null, $sm->get('Doctrine\ORM\EntityManager'));
                 },
                 'navigation' => function($sm) {
                     $navigation = new \Zend\Navigation\Service\DefaultNavigationFactory();

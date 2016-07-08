@@ -14,5 +14,9 @@ use Zend\View\Model\ViewModel;
 
 class UsuarioController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'usuario';
+        parent::__construct();
+    }
 }

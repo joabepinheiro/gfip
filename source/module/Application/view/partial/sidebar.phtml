@@ -1,12 +1,12 @@
 <?php
 /** @var $this \Zend\View\Renderer\PhpRenderer */
-/** @var  $usuario \Application\Entity\Usuario
+/** @var  $usuario \Application\Entity\Usuario */
 
-$container  = new \Zend\Session\Container('logado');
+$container  = new \Zend\Session\Container('session');
 $usuario    = $container->offsetGet('usuario');
 
 if($usuario['tipo'] == 'consultor'){
-    echo $this->partial('partial/consutor/sidebar');
+    echo $this->partial('partial/consultor/sidebar');
 }elseif($usuario['tipo'] == 'administrador'){
     echo $this->partial('partial/administrador/sidebar');
 }elseif($usuario['tipo'] == 'cliente'){
@@ -14,5 +14,4 @@ if($usuario['tipo'] == 'consultor'){
 }
 
 
- */
 

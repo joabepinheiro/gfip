@@ -14,5 +14,9 @@ use Zend\View\Model\ViewModel;
 
 class ReciboController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'recibo';
+        parent::__construct();
+    }
 }

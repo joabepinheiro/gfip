@@ -14,5 +14,9 @@ use Zend\View\Model\ViewModel;
 
 class ContaController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'conta';
+        parent::__construct();
+    }
 }

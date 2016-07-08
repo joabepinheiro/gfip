@@ -72,6 +72,13 @@ class Despesa
      */
     private $conta;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="efetuada", type="boolean", nullable=false)
+     */
+    private $efetuada = '1';
+
     public function __construct(array $options = array()){
         (new ClassMethods())->hydrate($options, $this);
     }
@@ -117,7 +124,7 @@ class Despesa
      */
     public function getData()
     {
-        return $this->data;
+        return     $this->data->format('d/m/Y');
     }
 
     /**
@@ -125,9 +132,10 @@ class Despesa
      */
     public function setData($data)
     {
-        $this->data = $data;
+        $datetime =  new \DateTime($data);
+        $datetime->format('dd/mm/yyyy');
+        $this->data = $datetime;
     }
-
     /**
      * @return string
      */
@@ -192,6 +200,26 @@ class Despesa
         $this->conta = $conta;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isEfetuada()
+    {
+        return $this->efetuada;
+    }
 
+    /**
+     * @param boolean $efetuada
+     */
+    public function setEfetuada($efetuada)
+    {
+        $this->efetuada = $efetuada;
+    }
+
+
+
+    public function __toString(){
+        return 'despesa' . $this->getId();
+    }
 }
 

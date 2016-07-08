@@ -117,6 +117,9 @@ class Conversa
         $this->chamado = $chamado;
     }
 
+    public function __toString(){
+        return $this->getId();
+    }
 
 }
 

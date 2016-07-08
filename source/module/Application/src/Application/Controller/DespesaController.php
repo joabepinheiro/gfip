@@ -14,5 +14,10 @@ use Zend\View\Model\ViewModel;
 
 class DespesaController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'despesa';
+        $this->formService  = true;
+        parent::__construct();
+    }
 }

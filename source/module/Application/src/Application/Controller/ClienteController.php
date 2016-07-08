@@ -14,5 +14,13 @@ use Zend\View\Model\ViewModel;
 
 class ClienteController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'cliente';
+        parent::__construct();
+    }
+    
+    public function dashboardAction(){
+        
+    }
 }

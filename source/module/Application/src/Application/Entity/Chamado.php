@@ -143,6 +143,8 @@ class Chamado
         $this->consultor = $consultor;
     }
 
-
+    public function __toString(){
+        return $this->getId();
+    }
 }
 

@@ -39,9 +39,24 @@
     ?>
     <!-- Scripts -->
     <?php $this->headScript()
+        ->prependFile($this->basePath('js/graficos.js'))
         ->prependFile($this->basePath('js/scripts.js'))
+        ->prependFile($this->basePath('plugins/flot/jquery.flot.categories.min.js'))
+        ->prependFile($this->basePath('plugins/flot/jquery.flot.pie.min.js'))
+        ->prependFile($this->basePath('plugins/flot/jquery.flot.resize.min.js'))
+        ->prependFile($this->basePath('plugins/flot/jquery.flot.min.js'))
+        ->prependFile($this->basePath('dist/js/demo.js'))
+        ->prependFile($this->basePath('dist/js/app.min.js'))
+        ->prependFile($this->basePath('plugins/fastclick/fastclick.js'))
         //Jquery Form
         ->prependFile($this->basePath('js/jquery.form.js'))
+
+        ->prependFile($this->basePath('plugins/morris/morris.min.js'))
+        ->prependFile($this->basePath('plugins/knob/jquery.knob.js'))
+        ->prependFile($this->basePath('plugins/chartjs/Chart.min.js'))
+
+        //bootstrap datepicker
+        ->prependFile($this->basePath('plugins/datepicker/bootstrap-datepicker.js'))
         //AdminLTE for demo purposes
         ->prependFile($this->basePath('dist/js/demo.js'))
         //AdminLTE App
@@ -83,6 +98,12 @@
             document.getElementById('body').style.overflow = 'hidden';
         }
     </script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini" id="body">
 

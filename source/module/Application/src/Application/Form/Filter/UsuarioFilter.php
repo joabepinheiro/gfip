@@ -24,7 +24,7 @@ class UsuarioFilter implements InputFilterAwareInterface{
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput([
-                'name' => '',
+                'name' => 'nome',
                 'required' => true,
                 'filters' => array(
                     array('name' => 'StripTags'),
@@ -35,10 +35,47 @@ class UsuarioFilter implements InputFilterAwareInterface{
                         'name' =>'NotEmpty',
                         'options' => array(
                             'messages' => array(
-                                'isEmpty' => ''
+                                'isEmpty' => 'O campo está vazio'
                             ),
                         ),
                     ),
+                ),
+            ]));
+
+
+            $inputFilter->add($factory->createInput([
+                'name' => 'senha',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' =>'NotEmpty',
+                        'options' => array(
+                            'messages' => array(
+                                'isEmpty' => 'Informe a senha'
+                            ),
+                        ),
+                    ),
+                ),
+            ]));
+
+            $inputFilter->add($factory->createInput([
+                'name' => 'confirmarsenha',
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array (
+                        'name' => 'identical',
+                        'options' => array(
+                            'token' => 'senha',
+                        ),
+                    ),
+
                 ),
             ]));
 

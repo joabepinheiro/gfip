@@ -14,5 +14,8 @@ use Zend\View\Model\ViewModel;
 
 class InvestimentoController extends ActionController
 {
-
+    public function listarAction()
+    {
+        return new ViewModel();
+    }
 }

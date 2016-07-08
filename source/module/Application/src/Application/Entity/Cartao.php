@@ -210,6 +210,8 @@ class Cartao
         $this->cliente = $cliente;
     }
 
-
+    public function __toString(){
+        return $this->getNome();
+    }
 }
 

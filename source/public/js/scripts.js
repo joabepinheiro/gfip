@@ -3,7 +3,7 @@ $(function () {
     // Setup - add a text input to each footer cell
     $('#table-search-columns tfoot th').each( function () {
         var title = $(this).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        $(this).html( '<input type="text" placeholder=" '+title+'" />' );
     } );
 
     // DataTable
@@ -37,6 +37,10 @@ $(function () {
 
     //Initialize Select2 Elements
     $(".select2").select2();
+
+
+    $( ".datepicker" ).datepicker();
+
 });
 
 

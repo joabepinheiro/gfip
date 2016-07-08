@@ -238,6 +238,8 @@ class DespesaProgramada
         $this->conta = $conta;
     }
 
-
+    public function __toString(){
+        return $this->getCategoria()->getNome() . '- '. $this->getConta()->getNome();
+    }
 }
 

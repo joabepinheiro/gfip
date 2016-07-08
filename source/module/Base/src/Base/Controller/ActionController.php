@@ -32,7 +32,7 @@ class ActionController extends AbstractActionController {
 
     public function __construct() {
         if(!is_null($this->slug)){
-            $this->entity       = ($this->entity)       ? $this->entity         : 'Application\\Entity\\'. ucfirst($this->slug);
+            $this->entity       = ($this->entity)       ? $this->entity         : 'Application\Entity\\'. ucfirst($this->slug);
             $this->model        = ($this->model)        ? $this->model          : 'Application\Model\\'. ucfirst($this->slug).'Model';
             $this->form         = ($this->form)         ? $this->form           : 'Application\Form\\'. ucfirst($this->slug).'Form';
             $this->formService  = ($this->formService)  ? $this->formService    : false;
@@ -41,7 +41,7 @@ class ActionController extends AbstractActionController {
     }
 
     public function  indexAction(){
-        //return $this->redirect()->toRoute($this->route, array('action' => 'listar'));
+        return $this->redirect()->toRoute($this->route, array('action' => 'listar'));
     }
 
     public function cadastrarAction(){
@@ -78,6 +78,7 @@ class ActionController extends AbstractActionController {
         $repository = $this->getEm()->getRepository($this->entity);
         $entity = $repository->find($this->getPK());
 
+
         if(!$entity){
             return $this->redirect()->toRoute($this->route, array('action', 'listar'));
         }
@@ -110,17 +111,9 @@ class ActionController extends AbstractActionController {
     public function  listarAction(){
 
         $list = $this->getEm()->getRepository($this->entity)->findAll();
-        $page = $this->params()->fromRoute('page');
-
-        /**
-        $paginator = new Paginator(new ArrayAdapter($list));
-        $paginator->setCurrentPageNumber($page)
-            ->setDefaultItemCountPerPage(1);
-         **/
 
         return new ViewModel(array(
             'data'          => $list,
-            'page'          => $page,
         ));
     }
 
@@ -202,5 +195,33 @@ class ActionController extends AbstractActionController {
             return  $this->getRequest()->getPost()[$pk];
         return $this->params()->fromRoute($pk, 0);
 
+    }
+
+    /**
+     * A home do usuário muda a depender do tipo de usuário logado a
+     * função abaixo redireciona para o home do usuario logado
+     *
+     * @return \Zend\Http\Response
+     */
+    public function redirectHome(){
+        $container = new Container('session');
+
+        //Se existir alguem logado
+        if($container->offsetExists('usuario')){
+
+            $tipo = $container->offsetGet('usuario')['tipo'];
+            if($tipo == 'consultor')
+                return $this->redirect()->toRoute('consultor/default');
+
+            if($tipo == 'cliente')
+                return $this->redirect()->toRoute('cliente/default', array('action'=> 'index'));
+
+            if($tipo == 'administrador')
+                return $this->redirect()->toRoute('administrador/default', array('action'=> 'index'));
+
+            return $this->redirect()->toRoute('home');
+        }else{
+            $this->redirect()->toRoute('login');
+        }
     }
 }

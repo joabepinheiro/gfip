@@ -9,6 +9,8 @@
 
 namespace Application;
 
+use Base\Service\ConfigService;
+
 return array(
     'router' => array(
         'routes' => array(
@@ -22,11 +24,7 @@ return array(
                     ),
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
+            'application'       => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/application',
@@ -52,7 +50,7 @@ return array(
                     ),
                 ),
             ),
-            'login' => array(
+            'login'             => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/login',
@@ -64,50 +62,28 @@ return array(
                     ),
                 ),
             ),
-            'consultor' => array(
+            'logout'            => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/consultor',
+                    'route'    => '/logout',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Consultor',
-                        'action'        => 'index',
+                        'controller'    => 'Auth',
+                        'action'        => 'logout',
                         'module'        => 'Application'
                     ),
                 ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:action[/:id]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => null
-                            ),
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'Application\Controller',
-                                'controller'    => 'Consultor',
-                            )
-                        ),
-                    ),
-                    'paginator' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:action/[page/:page]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'constraints' => array(
-                                'page' => '\d+',
-                            ),
-                        ),
-                    )
-
-                ),
             ),
+            'consultor'         => ConfigService::getRoute('consultor', 'Consultor'),
+            'conta'             => ConfigService::getRoute('conta', 'Conta'),
+            'receita'           => ConfigService::getRoute('receita', 'Receita'),
+            'despesa'           => ConfigService::getRoute('despesa', 'Despesa'),
+            'transferencia'     => ConfigService::getRoute('transferencia', 'Transferencia'),
+            'cartao'            => ConfigService::getRoute('cartao', 'Cartao'),
+            'grafico'           => ConfigService::getRoute('grafico', 'Grafico'),
+            'categoria'         => ConfigService::getRoute('categoria', 'Categoria'),
+            'investimento'      => ConfigService::getRoute('investimento', 'Investimento'),
+            'cliente'           => ConfigService::getRoute('cliente', 'Cliente'),
         ),
     ),
     'service_manager' => array(
@@ -126,7 +102,6 @@ return array(
                 'label' => 'Home',
                 'route' => 'home',
                 'pages' => array(
-                    //Funções modelo
                     array(
                         'label'  => 'Consultor',
                         'route'  => 'consultor/default',
@@ -144,6 +119,27 @@ return array(
                             array(
                                 'label'  => 'Listar',
                                 'route'  => 'consultor/default',
+                                'action' => 'listar',
+                            ),
+                        )
+                    ),
+                    array(
+                        'label'  => 'Receita',
+                        'route'  => 'receita/default',
+                        'pages'  => array(
+                            array(
+                                'label'  => 'Cadastrar',
+                                'route'  => 'receita/default',
+                                'action' => 'cadastrar',
+                            ),
+                            array(
+                                'label'  => 'Editar',
+                                'route'  => 'receita/default',
+                                'action' => 'editar',
+                            ),
+                            array(
+                                'label'  => 'Listar',
+                                'route'  => 'receita/default',
                                 'action' => 'listar',
                             ),
                         )
@@ -168,7 +164,7 @@ return array(
             'Application\Controller\Index' => Controller\IndexController::class,
             'Application\Controller\Action' => Controller\ActionController::class,
             'Application\Controller\Administrador' => Controller\AdministradorController::class,
-            'Application\Controller\CartaoCredito' => Controller\CartaoCreditoController::class,
+            'Application\Controller\Cartao' => Controller\CartaoController::class,
             'Application\Controller\Categoria' => Controller\CategoriaController::class,
             'Application\Controller\Chamado' => Controller\ChamadoController::class,
             'Application\Controller\Consultor' => Controller\ConsultorController::class,
@@ -179,7 +175,9 @@ return array(
             'Application\Controller\Transferencia' => Controller\TransferenciaController::class,
             'Application\Controller\Usuario' => Controller\UsuarioController::class,
             'Application\Controller\Auth' => Controller\AuthController::class,
+            'Application\Controller\Receita' => Controller\ReceitaController::class,
             'Application\Controller\Cliente' => Controller\ClienteController::class,
+            'Application\Controller\Grafico' => Controller\GraficoController::class,
         ),
     ),
 
@@ -191,9 +189,14 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/documentacao'           => __DIR__ . '/../view/layout/layout-documentacao.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'partial/sidebar'             => __DIR__ . '/../view/partial/sidebar.phtml',
+            'partial/administrador/sidebar'             => __DIR__ . '/../view/partial/administrador/sidebar.phtml',
+            'partial/consultor/sidebar'             => __DIR__ . '/../view/partial/consultor/sidebar.phtml',
+            'partial/cliente/sidebar'             => __DIR__ . '/../view/partial/cliente/sidebar.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
@@ -206,4 +209,21 @@ return array(
             ),
         ),
     ),
+
+    'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                )
+            )
+        )
+    ),
 );
+
+

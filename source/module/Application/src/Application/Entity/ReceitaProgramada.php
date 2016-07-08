@@ -189,6 +189,8 @@ class ReceitaProgramada
         $this->conta = $conta;
     }
 
-
+    public function __toString(){
+        return 'Receita programada ' . $this->getId();
+    }
 }
 

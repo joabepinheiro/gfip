@@ -1,0 +1,58 @@
+<?php
+/** @var  $row \Application\Entity\Cartao*/
+$data = $this->data;
+$this->layout()->setVariable('titulo', 'Cartão');
+?>
+
+<div class="row" style="margin-top: -35px; margin-bottom: 10px;">
+    <div class="col-lg-12">
+        <a href="<?php echo $this->url('cartao/default', array('action'=>'cadastrar',)); ?>" class="btn btn-primary pull-right">
+            <i class="fa fa-plus"></i>
+            Novo cartão
+        </a>
+    </div>
+</div>
+
+<div class="box">
+    <!--<div class="box-header with-border">
+    </div>-->
+    <div class="box-body">
+        <?php echo $this->partial('partial/messages');?>
+        <table  class="table table-bordered table-striped" id="table-search-columns">
+            <thead>
+            <tr>
+                <th style="vertical-align:middle">Nome</th>
+                <th style="vertical-align:middle">Bandeira</th>
+                <th style="vertical-align:middle">Fechamento</th>
+                <th style="vertical-align:middle">Vencimento</th>
+                <th style="vertical-align:middle">Limite</th>
+                <th style="vertical-align:middle"></th>
+                <th style="vertical-align:middle"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?php foreach($data as $row): ?>
+                <tr>
+
+                    <td style="vertical-align:middle"><?php echo $row->getNome(); ?></td>
+                    <td style="vertical-align:middle"><?php echo $row->getBandeira(); ?></td>
+                    <td style="vertical-align:middle"><?php echo $row->getDiaFechamentoFatura(); ?></td>
+                    <td style="vertical-align:middle"><?php echo $row->getDiaVencimentoFatura(); ?></td>
+                    <td style="vertical-align:middle"><?php echo $row->getLimite(); ?></td>
+                    <td style="vertical-align:middle">
+                        <a href="<?php echo $this->url('cartao/default', array('action'=>'editar', 'id' => $row->getId(),)); ?>">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                    <td style="vertical-align:middle">
+                        <a href="<?php echo $this->url('cartao/default', array('action'=>'deletar', 'id' => $row->getId(),)); ?>">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->

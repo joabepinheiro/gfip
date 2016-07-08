@@ -1,85 +1,71 @@
 <?php
 /** @var $this \Zend\View\Renderer\PhpRenderer */
-/** @var  $usuario \Application\Entity\Usuario Usuario logado */
-/** @var  $contador \Application\Entity\Contador Contador logado*/
-/** @var  $cliente  Application\Entity\Cliente Clientes que são gerenciados pelocontador logado*/
-/** @var  $cliente_selecionado  Application\Entity\Cliente*/
+/** @var  $usuario \Application\Entity\Usuario Usuario */
 
-$container  = new \Zend\Session\Container('logado');
+$container  = new \Zend\Session\Container('session');
 $usuario    = $container->offsetGet('usuario');
-$cliente = $usuario['cliente'];
-
 ?>
 
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <!--<div class="user-panel">
-                <div class="pull-left image">
-                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>-
-                <div class="pull-left info">
-                    <p>Joabe Pinheiro</p>
-                    <a href="#">Contador</a>
-                </div>
-            </div>->
-            <!-- search form -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu">+
+            <li class="treeview">
+                <a href=<?php echo $this->url('cliente/default', array('action' => 'dashboard'))?>>
+                    <i class="fa fa-dashboard"></i> <span>Principal</span>
+                </a>
+            </li>
 
-            <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href=<?php echo $this->url('conta/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-university" aria-hidden="true"></i> <span>Contas</span>
+                </a>
+            </li>
 
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
+            <li class="treeview">
+                <a href=<?php echo $this->url('receita/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-money" aria-hidden="true"></i>Receitas</span>
+                </a>
+            </li>
 
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-barcode"></i> <span>NF-e</span> <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="<?php echo $this->url('nfe/default', array(
-                                    'action' => 'enviar'
-                                ))?>"><i class="fa fa-send"></i> Enviar notas</a></li>
-                            <li><a href="<?php echo $this->url('nfe/default', array(
-                                    'action' => 'listar'
-                                ))?>"><i class="fa fa-list"></i> listar</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-life-ring" aria-hidden="true"></i> <span>Suporte</span> <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="<?php echo $this->url('suporte/default', array(
-                                    'action' => 'contato'
-                                ))?>"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contato</a></li>
-                            <li><a href="<?php echo $this->url('suporte/default', array(
-                                    'action' => 'faq'
-                                ))?>"><i class="fa fa-question" aria-hidden="true"></i> FAQ</a></li>
-                        </ul>
-                    </li>
+            <li class="treeview">
+                <a href=<?php echo $this->url('despesa/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-money" aria-hidden="true"></i>Despesas</span>
+                </a>
+            </li>
 
+            <li class="treeview">
+                <a href=<?php echo $this->url('transferencia/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-exchange" aria-hidden="true"></i> <span>Transferências</span>
+                </a>
+            </li>
 
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+            <li class="treeview">
+                <a href=<?php echo $this->url('cartao/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-credit-card" aria-hidden="true"></i> <span>Cartão de crédito</span>
+                </a>
+            </li>
 
+            <li class="treeview">
+                <a href=<?php echo $this->url('grafico/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-pie-chart" aria-hidden="true"></i> <span>Gráficos</span>
+                </a>
+            </li>
 
+            <li class="treeview">
+                <a href=<?php echo $this->url('categoria/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-tag" aria-hidden="true"></i> <span>Categorias</span>
+                </a>
+            </li>
 
+            <li class="treeview">
+                <a href=<?php echo $this->url('investimento/default', array('action' => 'listar')) ?>>
+                    <i class="fa fa-calculator" aria-hidden="true"></i> <span>Simular investimento</span>
+                </a>
+            </li>
 
-<?php $this->headScript()->captureStart() ?>
-    $(document).ready(function () {
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
 
-    $("#selecionar-cliente").change(function () {
-    var stateId = $(this).val();
-    if(stateId !== "") {
-    // you might want to change this
-    var url = "/contador/selecionar-cliente/"+stateId;
-    $.getJSON( url, function( data ) {
-    location.reload();
-    });
-    }
-    });
-
-    });
-<?php $this->headScript()->captureEnd() ?>

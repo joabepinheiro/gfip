@@ -24,10 +24,11 @@ abstract class AbstractModel {
         }elseif(is_object($data)){
             $entity = $data;
         }
-
-
+        
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
+
+
         return $entity;
     }
 
@@ -63,8 +64,8 @@ abstract class AbstractModel {
             $url = '/index/';
 
             $tipo = $container->offsetGet('usuario')['tipo'];
-            if($tipo == 'contador')
-               $url = '/contador/index';
+            if($tipo == 'consultor')
+               $url = '/consultor/index';
 
             if($tipo == 'cliente')
                 $url = '/cliente/index';

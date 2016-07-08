@@ -1,0 +1,30 @@
+<?php
+/** @var $this \Zend\View\Renderer\PhpRenderer */
+/** @var  $usuario \Application\Entity\Usuario Usuario */
+
+$container  = new \Zend\Session\Container('session');
+$usuario    = $container->offsetGet('usuario');
+
+?>
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Principal</span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-ticket"></i> <span>Chamados</span>
+                </a>
+            </li>
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+

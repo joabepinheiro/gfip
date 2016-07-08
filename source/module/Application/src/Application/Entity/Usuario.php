@@ -4,11 +4,13 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Hydrator\ClassMethods;
+use Zend\Crypt\Key\Derivation\Pbkdf2;
 /**
  * Usuario
  *
  * @ORM\Table(name="usuario")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Entity\UsuarioRepository")
  */
 class Usuario
 {
@@ -70,8 +72,18 @@ class Usuario
      */
     private $ativo = '1';
 
+    private $hash = 'jm8NY81CiHA=edhdvFRy14g54sGFG';
+
+    /**
+     * @var \Application\Entity\Cliente
+     * @ORM\OneToOne(targetEntity="\Application\Entity\Cliente", mappedBy="usuario",  inversedBy="clientes")
+     */
+    private $cliente;
+
     public function __construct(array $options = array()){
         (new ClassMethods())->hydrate($options, $this);
+        $this->cadastradoEm     = new \DateTime("now");
+        $this->ultimoAcesso     = new \DateTime("now");
     }
 
     public function toArray(){
@@ -134,12 +146,11 @@ class Usuario
         return $this->senha;
     }
 
-    /**
-     * @param string $senha
-     */
+
     public function setSenha($senha)
     {
-        $this->senha = $senha;
+        $this->senha =$this->encryptPassword($senha);
+        return $this;
     }
 
     /**
@@ -206,6 +217,29 @@ class Usuario
         $this->ativo = $ativo;
     }
 
+    /**
+     * @return Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
 
+    /**
+     * @param Cliente $cliente
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    }
+
+    
+    public function encryptPassword($password){
+        return base64_encode(Pbkdf2::calc('sha256', $password, $this->hash, 10000, strlen($password*2)));
+    }
+
+    public function __toString(){
+        return  $this->getNome();
+    }
 }
 

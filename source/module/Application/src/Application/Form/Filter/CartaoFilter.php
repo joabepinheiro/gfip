@@ -7,7 +7,7 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-class CartaoCreditoFilter implements InputFilterAwareInterface{
+class CartaoFilter implements InputFilterAwareInterface{
 
     protected $inputFilter;
 
@@ -24,7 +24,7 @@ class CartaoCreditoFilter implements InputFilterAwareInterface{
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput([
-                'name' => '',
+                'name' => 'nome',
                 'required' => true,
                 'filters' => array(
                     array('name' => 'StripTags'),
@@ -35,7 +35,27 @@ class CartaoCreditoFilter implements InputFilterAwareInterface{
                         'name' =>'NotEmpty',
                         'options' => array(
                             'messages' => array(
-                                'isEmpty' => ''
+                                'isEmpty' => 'Informe o nome do cartão'
+                            ),
+                        ),
+                    ),
+                ),
+            ]));
+
+
+            $inputFilter->add($factory->createInput([
+                'name' => 'bandeira',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' =>'NotEmpty',
+                        'options' => array(
+                            'messages' => array(
+                                'isEmpty' => 'Informe o nome da bandeira'
                             ),
                         ),
                     ),

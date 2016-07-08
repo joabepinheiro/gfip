@@ -19,12 +19,9 @@ use Zend\Session\Container;
 
 class AuthController extends ActionController
 {
-
-
     public function indexAction(){
-
         if((new SessionService())->isLogado()){
-            //$this->redirectHome();
+            $this->redirectHome();
         }
 
         $form = new LoginForm($this->getEm());
@@ -54,21 +51,8 @@ class AuthController extends ActionController
                     /** @var  $usuarioLogado \Application\Entity\Usuario */
                     $usuarioLogado = $auth->getIdentity();
                     $sessioStorage->write($usuarioLogado, null);
-                    $container = new Container('logado');
-
+                    $container = new Container('session');
                     $container->offsetSet('usuario', $usuarioLogado->toArray());
-
-                    if($usuarioLogado->getTipo() == 'contador'){
-                        $container->offsetSet('clientes', $usuarioLogado->getContador()->getClientes()->toArray());
-                        $container->offsetSet('contador', $usuarioLogado->getContador()->toArray());
-                    }
-
-                    if($usuarioLogado->getTipo() == 'cliente'){
-                        $container->offsetSet('cliente-selecionado', $usuarioLogado->getCliente()->toArray());
-                        $container->offsetSet('contador', $usuarioLogado->getCliente()->getContador()->toArray());
-                    }
-
-
                     $this->redirectHome();
                 }
                 $menssages =  current($result->getMessages());
@@ -93,7 +77,7 @@ class AuthController extends ActionController
         $auth->setStorage(new SessionStorage('login'));
         $auth->clearIdentity();
 
-        $container = new Container('logado');
+        $container = new Container('session');
         $container->getManager()->destroy();
 
         return $this->redirect()->toRoute('login');

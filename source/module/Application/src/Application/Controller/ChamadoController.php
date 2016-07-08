@@ -14,5 +14,9 @@ use Zend\View\Model\ViewModel;
 
 class ChamadoController extends ActionController
 {
-
+    public function __construct()
+    {
+        $this->slug = 'chamado';
+        parent::__construct();
+    }
 }

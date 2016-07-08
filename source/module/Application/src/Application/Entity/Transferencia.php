@@ -5,12 +5,12 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Hydrator\ClassMethods;
 /**
- * Transferencias
+ * Transferencia
  *
- * @ORM\Table(name="transferencias", indexes={@ORM\Index(name="fk_transferencias_conta1_idx", columns={"origem"}), @ORM\Index(name="fk_transferencias_conta2_idx", columns={"destino"})})
+ * @ORM\Table(name="transferencia", indexes={@ORM\Index(name="fk_transferencias_conta1_idx", columns={"origem"}), @ORM\Index(name="fk_transferencias_conta2_idx", columns={"destino"})})
  * @ORM\Entity
  */
-class Transferencias
+class Transferencia
 {
     /**
      * @var integer
@@ -55,7 +55,18 @@ class Transferencias
      */
     private $destino;
 
+    /**
+     * @var \Application\Entity\Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     * })
+     */
+    private $cliente;
+
     public function __construct(array $options = array()){
+        $this->data = new \DateTime('now');
         (new ClassMethods())->hydrate($options, $this);
     }
 
@@ -84,16 +95,9 @@ class Transferencias
      */
     public function getData()
     {
-        return $this->data;
+        return     $this->data;
     }
 
-    /**
-     * @param \DateTime $data
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-    }
 
     /**
      * @return float
@@ -143,6 +147,27 @@ class Transferencias
         $this->destino = $destino;
     }
 
+    /**
+     * @return Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param Cliente $cliente
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    }
+
+
+
+    public function __toString(){
+        return 'Transferencia ' . $this->getId();
+    }
 
 }
 
