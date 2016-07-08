@@ -9,6 +9,7 @@ use Zend\Hydrator\ClassMethods;
  *
  * @ORM\Table(name="despesa", indexes={@ORM\Index(name="fk_Despesa_categoria1_idx", columns={"categoria_id"}), @ORM\Index(name="fk_Despesa_conta1_idx", columns={"conta_id"}), @ORM\Index(name="fk_Despesa_cartao1_idx", columns={"cartao_id"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Entity\DespesaRepository")
  */
 class Despesa
 {

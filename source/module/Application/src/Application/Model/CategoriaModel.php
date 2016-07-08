@@ -14,4 +14,11 @@ class CategoriaModel extends AbstractModel  {
         $this->entity = 'Application\Entity\Categoria';
     }
 
+    public function insert($data)
+    {
+        $data['cliente']    = $this->getInstanceUsuarioLogado()->getCliente();
+        return parent::insert($data);
+    }
+
+
 }

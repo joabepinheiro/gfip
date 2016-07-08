@@ -41,4 +41,8 @@ use Zend\Stdlib\Hydrator;
          return $this->session->offsetGet('usuario');
      }
 
+     public function getIdClienteLogado(){
+        return $this->getUsuarioLogado()['cliente']->getId();
+     }
+
  }

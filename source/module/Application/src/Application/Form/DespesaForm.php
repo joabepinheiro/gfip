@@ -63,7 +63,7 @@ class DespesaForm extends AbstractForm{
                 'is_method' => true,
                 'display_empty_item' => true,
                 'find_method'        => array(
-                    'name'   => 'findCategoriaReceita',
+                    'name'   => 'findCategoriaDespesa',
                 )
             )
         )

@@ -16,10 +16,15 @@ class DespesaModel extends AbstractModel  {
 
     public function insert($data)
     {
+
         $data['categoria']  = $this->entityManager->getRepository('Application\Entity\Categoria')->find( $data['categoria']);
         $data['conta']      = $this->entityManager->getRepository('Application\Entity\Conta')->find( $data['conta']);
         $data['cliente']    = $this->getInstanceUsuarioLogado()->getCliente();
-        return parent::insert($data);
+
+        if((new ContaModel($this->entityManager))->sacar($data['valor'], $data['conta'])){
+            return parent::insert($data);
+        }
+        return null;
     }
 
     public function update($data){

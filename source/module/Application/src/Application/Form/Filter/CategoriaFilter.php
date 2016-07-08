@@ -24,7 +24,7 @@ class CategoriaFilter implements InputFilterAwareInterface{
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput([
-                'name' => '',
+                'name' => 'nome',
                 'required' => true,
                 'filters' => array(
                     array('name' => 'StripTags'),
@@ -35,7 +35,7 @@ class CategoriaFilter implements InputFilterAwareInterface{
                         'name' =>'NotEmpty',
                         'options' => array(
                             'messages' => array(
-                                'isEmpty' => ''
+                                'isEmpty' => 'informe o nome da categoria'
                             ),
                         ),
                     ),

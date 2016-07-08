@@ -56,9 +56,16 @@ class ActionController extends AbstractActionController {
 
                 $entity = $service->insert($request->getPost()->toArray());
 
-                $this->flashMessenger()
-                    ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
-                    ->addMessage($entity . ' cadastrado com sucesso');
+                if($entity){
+                    $this->flashMessenger()
+                        ->setNamespace(FlashMessenger::NAMESPACE_SUCCESS)
+                        ->addMessage($entity . ' cadastrado com sucesso');
+                }else{
+                    $this->flashMessenger()
+                        ->setNamespace(FlashMessenger::NAMESPACE_ERROR)
+                        ->addMessage('Não foi possivel registrar os dados');
+                }
+
 
                 $form       = ($this->formService) ? $this->getServiceLocator()->get($this->form) : new $this->form();
                 $this->redirect()->toRoute($this->route);

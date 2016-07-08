@@ -39,7 +39,7 @@ class ContaModel extends AbstractModel  {
     }
 
     public function sacar($valor, Conta $conta){
-        if($valor > 0 && $conta->getSaldo() > 0){
+        if($valor > 0 && $conta->getSaldo() > $valor){
             $conta->setSaldo($conta->getSaldo() - $valor);
 
             $this->entityManager->persist($conta);

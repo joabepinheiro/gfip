@@ -25,6 +25,7 @@ $this->layout()->setVariable('titulo', 'Transferências');
                 <th style="vertical-align:middle">Origem</th>
                 <th style="vertical-align:middle">Destino</th>
                 <th style="vertical-align:middle">Valor</th>
+                <th style="vertical-align:middle">Data</th>
             </tr>
             </thead>
 
@@ -34,6 +35,7 @@ $this->layout()->setVariable('titulo', 'Transferências');
                     <td style="vertical-align:middle"><?php echo $row->getOrigem()->getNome(); ?></td>
                     <td style="vertical-align:middle"><?php echo $row->getDestino()->getNome(); ?></td>
                     <td style="vertical-align:middle"><?php echo $this->currencyFormat($row->getValor(), 'BRL', true, 'pt_BR', 'R$ #0.#'); ?></td>
+                    <td style="vertical-align:middle"><?php echo $row->getData()->format('d/m/Y H:i:s'); ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
