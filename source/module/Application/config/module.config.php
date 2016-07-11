@@ -74,6 +74,7 @@ return array(
                     ),
                 ),
             ),
+            'administrador'         => ConfigService::getRoute('administrador', 'Administrador', 'index'),
             'consultor'         => ConfigService::getRoute('consultor', 'Consultor'),
             'conta'             => ConfigService::getRoute('conta', 'Conta'),
             'receita'           => ConfigService::getRoute('receita', 'Receita'),
@@ -102,48 +103,17 @@ return array(
                 'label' => 'Home',
                 'route' => 'home',
                 'pages' => array(
-                    array(
-                        'label'  => 'Consultor',
-                        'route'  => 'consultor/default',
-                        'pages'  => array(
-                            array(
-                                'label'  => 'Cadastrar',
-                                'route'  => 'consultor/default',
-                                'action' => 'cadastrar',
-                            ),
-                            array(
-                                'label'  => 'Editar',
-                                'route'  => 'consultor/default',
-                                'action' => 'editar',
-                            ),
-                            array(
-                                'label'  => 'Listar',
-                                'route'  => 'consultor/default',
-                                'action' => 'listar',
-                            ),
-                        )
-                    ),
-                    array(
-                        'label'  => 'Receita',
-                        'route'  => 'receita/default',
-                        'pages'  => array(
-                            array(
-                                'label'  => 'Cadastrar',
-                                'route'  => 'receita/default',
-                                'action' => 'cadastrar',
-                            ),
-                            array(
-                                'label'  => 'Editar',
-                                'route'  => 'receita/default',
-                                'action' => 'editar',
-                            ),
-                            array(
-                                'label'  => 'Listar',
-                                'route'  => 'receita/default',
-                                'action' => 'listar',
-                            ),
-                        )
-                    ),
+                    ConfigService::getNavigation('consultor', 'Consultor'),
+                    ConfigService::getNavigation('receita', 'Receita'),
+                    ConfigService::getNavigation('despesa', 'Despesa'),
+                    ConfigService::getNavigation('trasnferencia', 'Trasnferência'),
+                    ConfigService::getNavigation('cartao', 'Cartao'),
+                    ConfigService::getNavigation('categoria', 'Categoria'),
+                    ConfigService::getNavigation('investimento', 'Investimento'),
+                    ConfigService::getNavigation('cliente', 'Cliente'),
+                    ConfigService::getNavigation('grafico', 'Gráfico'),
+                    ConfigService::getNavigation('conta', 'Conta'),
+                    ConfigService::getNavigation('despesa', 'Despesa'),
                 ),
             ),
         ),

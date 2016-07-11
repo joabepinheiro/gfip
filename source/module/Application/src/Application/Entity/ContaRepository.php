@@ -10,7 +10,7 @@ class ContaRepository extends EntityRepository
 {
     public function findConta(){
        return $this->findBy(array(
-           'cliente'    => $this->_em->find('Application\Entity\Cliente', (new SessionService())->getIdUsuarioLogado()),
+           'cliente'    => $this->_em->find('Application\Entity\Cliente', (new SessionService())->getIdClienteLogado()),
        ));
     }
 }

@@ -12,6 +12,7 @@ return array(
         'DoctrineORMModule',
         'Base',
         'Application',
+        'Acl',
         'ZendDeveloperTools',
     ),
 

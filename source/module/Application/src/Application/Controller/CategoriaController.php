@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Base\Service\SessionService;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -18,5 +19,16 @@ class CategoriaController extends ActionController
     {
         $this->slug = 'categoria';
         parent::__construct();
+    }
+
+
+    public function  listarAction(){
+        $list = $this->getEm()->getRepository($this->entity)->findBy(array(
+            'cliente' => $this->getClienteLogado()
+        ));
+
+        return new ViewModel(array(
+            'data'          => $list,
+        ));
     }
 }

@@ -9,7 +9,7 @@ use Zend\Stdlib\Hydrator;
 
 class ConfigService {
 
-    public static function getRoute($name, $controller){
+    public static function getRoute($name, $controller, $action = 'listar'){
         return   array(
             'type'    => 'Literal',
             'options' => array(
@@ -17,7 +17,7 @@ class ConfigService {
                 'defaults' => array(
                     '__NAMESPACE__' => 'Application\Controller',
                     'controller'    => $controller,
-                    'action'        => 'listar',
+                    'action'        => $action,
                     'module'        => 'Application'
                 ),
             ),
@@ -53,6 +53,30 @@ class ConfigService {
                 )
 
             ),
+        );
+    }
+
+    public static function getNavigation($route, $label){
+        return array(
+            'label'  => $label,
+            'route'  => $route.'/default',
+            'pages'  => array(
+                array(
+                    'label'  => 'Cadastrar',
+                    'route'  => $route.'/default',
+                    'action' => 'cadastrar',
+                ),
+                array(
+                    'label'  => 'Editar',
+                    'route'  => $route.'/default',
+                    'action' => 'editar',
+                ),
+                array(
+                    'label'  => 'Listar',
+                    'route'  => $route.'/default',
+                    'action' => 'listar',
+                ),
+            )
         );
     }
 

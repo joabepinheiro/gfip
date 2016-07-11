@@ -19,6 +19,5 @@ class CategoriaModel extends AbstractModel  {
         $data['cliente']    = $this->getInstanceUsuarioLogado()->getCliente();
         return parent::insert($data);
     }
-
-
+    
 }

@@ -19,4 +19,14 @@ class ContaController extends ActionController
         $this->slug = 'conta';
         parent::__construct();
     }
+
+    public function  listarAction(){
+        $list = $this->getEm()->getRepository($this->entity)->findBy(array(
+            'cliente' => $this->getClienteLogado()
+        ));
+
+        return new ViewModel(array(
+            'data'          => $list,
+        ));
+    }
 }

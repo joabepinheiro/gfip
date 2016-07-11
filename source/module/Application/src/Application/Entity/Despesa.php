@@ -74,6 +74,16 @@ class Despesa
     private $conta;
 
     /**
+     * @var \Application\Entity\Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     * })
+     */
+    private $cliente;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="efetuada", type="boolean", nullable=false)
@@ -216,6 +226,24 @@ class Despesa
     {
         $this->efetuada = $efetuada;
     }
+
+    /**
+     * @return Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param Cliente $cliente
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    }
+
+    
 
 
 
