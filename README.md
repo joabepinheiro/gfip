@@ -3,7 +3,7 @@ GFIP
 
 Introduction
 ------------
-O gfip é uma aplicação de gerenciamento financeioro pessoal, foi deseNvolvida como complemento do trabalho na disciplina de  Análise e modelagem de sistemas
+O gfip é uma aplicação de gerenciamento financeioro pessoal, foi desenvolvida como complemento do trabalho na disciplina de  Análise e modelagem de sistemas
 
 Installation using Composer
 ---------------------------
