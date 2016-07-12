@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+/vendor
+nbproject
+._*
+.vagrant
+.~lock.*
+.buildpath
+.DS_Store
+.idea
+.project
+/vendor/zendframework
+.settings
+composer.phar
