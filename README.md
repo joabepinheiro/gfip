@@ -14,7 +14,7 @@ O processo de instalação da aplicação deve seguir os seguintes passos
 ###Clone do projeto
 git clone https://github.com/joabepinheiro/gfip.git
 
-###Acesse po diretório onde o porjeto foi clonado
+###Acesse o diretório onde o projeto foi clonado
 cd my/project/dir
 
 ###Instalação das dependências
