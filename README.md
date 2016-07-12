@@ -20,7 +20,7 @@ cd my/project/dir
 ###Instalação das dependências
 php composer.phar install
 
-###A maneira mais simples para começar, se você estiver usando PHP 5.4 ou superior é para iniciar o cli-servidor PHP interna no diretório raiz
+###Iniciando o servidor
 php -S 0.0.0.0:8080 -t public/ public/index.php
 
 
